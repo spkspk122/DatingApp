@@ -18,17 +18,20 @@ import {
 // import Logo from '../../assest/svg/logoOne.svg';
 
 import {iconpathurl} from '../../constant/iconpathurl';
-import {strings} from '../../constant/strings';
+import {RegisterScreen, placeholder, strings} from '../../constant/strings';
 
-import {Slider} from 'react-native-elements';
+import {Button, Slider} from 'react-native-elements';
 import {Animated} from 'react-native';
 import Spacer from '../../components/spacer';
 import {colors} from '../../utlis/constants';
 import {baseStyle} from '../../constant/themes';
 import TextInputProfile from '../../components/textInput';
 import {KeyboardAwareScrollView} from '@codler/react-native-keyboard-aware-scroll-view';
+import DatePicker from 'react-native-date-picker';
 
 function OneRecOnBoardarding() {
+  const [date, setDate] = useState('');
+  const [open, setOpen] = useState(false);
   return (
     <View style={styles.mainContainer}>
       <KeyboardAwareScrollView style={{width: '90%', alignSelf: 'center'}}>
@@ -52,12 +55,77 @@ function OneRecOnBoardarding() {
             ),
             styles.createAccTxt,
           ]}>
-          Create Your Account
+          {RegisterScreen.confrimYourDetails}
         </Text>
         <Spacer height={heightPercentageToDP('1.5%')} />
-        <TextInputProfile label="Gender" placeholder={'enter your Gender'} />
+        <TextInputProfile
+          label={RegisterScreen.fullName}
+          placeholder={placeholder.enteryourname}
+        />
         <Spacer height={heightPercentageToDP('1.5%')} />
-        <TextInputProfile label="FullName" placeholder={'enter your Gender'} />
+        <View
+          style={{
+            width: '90%',
+            alignSelf: 'center',
+          }}>
+          <Text
+            style={[
+              baseStyle.txtStyleOutInterRegular(
+                heightPercentageToDP('2%'),
+                colors.gray,
+              ),
+            ]}>
+            {RegisterScreen.dob}
+          </Text>
+          <Spacer height={heightPercentageToDP('2%')} />
+          <TouchableOpacity
+            onPress={() => setOpen(true)}
+            style={{
+              borderBottomWidth: 1,
+              borderBottomColor: colors.gray,
+            }}>
+            <Text
+              style={[
+                baseStyle.txtStyleOutInterRegular(
+                  heightPercentageToDP('1.8%'),
+                  colors.gray,
+                ),
+              ]}>
+              {date ? date : placeholder.enteryourDob}
+            </Text>
+            <Spacer height={heightPercentageToDP('1%')} />
+          </TouchableOpacity>
+          <DatePicker
+            modal
+            mode="date"
+            maximumDate={new Date()}
+            fadeToColor="red"
+            open={open}
+            date={date}
+            onConfirm={date => {
+              setOpen(false);
+              setDate(date);
+            }}
+            onCancel={() => {
+              setOpen(false);
+            }}
+          />
+        </View>
+
+        {/* <Button title="Open" onPress={() => setOpen(true)} />
+        <DatePicker
+          modal
+          open={open}
+          date={date}
+          onConfirm={date => {
+            setOpen(false);
+            setDate(date);
+          }}
+          onCancel={() => {
+            setOpen(false);
+          }}
+        /> */}
+
         <Spacer height={heightPercentageToDP('1.5%')} />
         <TextInputProfile
           label="EmailAddress"
@@ -83,7 +151,7 @@ function OneRecOnBoardarding() {
           </Text>
         </TouchableOpacity>
 
-        <Spacer height={heightPercentageToDP('3.8%')} />
+        <Spacer height={heightPercentageToDP('3%')} />
         <TouchableOpacity>
           <LinearGradient
             start={{x: 0, y: 0}}

@@ -9,15 +9,15 @@ import {colors} from '../../utlis/constants';
 const styles = StyleSheet.create({
   textInputView: {
     width: '90%',
-    backgroundColor: colors.white1,
-    height: heightPercentageToDP('6.5%'),
+    backgroundColor: colors.white,
+    height: heightPercentageToDP('5%'),
     borderRadius: widthPercentageToDP('2%'),
     alignSelf: 'center',
     paddingRight: widthPercentageToDP('2%'),
     paddingLeft: widthPercentageToDP('2%'),
     justifyContent: 'center',
     borderColor: colors.grey2,
-    borderWidth: heightPercentageToDP('0.2%'),
+    borderBottomWidth: heightPercentageToDP('0.2%'),
   },
   textInputViewMultiline: {
     width: '90%',
@@ -29,9 +29,7 @@ const styles = StyleSheet.create({
     borderWidth: heightPercentageToDP('0.2%'),
     borderRadius: widthPercentageToDP('2%'),
   },
-  textInput: {
-    height: '100%',
-  },
+  textInput: {},
   fieldText: {
     width: '90%',
     alignSelf: 'center',

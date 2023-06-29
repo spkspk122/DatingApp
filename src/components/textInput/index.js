@@ -70,7 +70,7 @@ function TextInputProfile(props) {
             style={[
               baseStyle.txtStyleOutPoppinMedium(
                 heightPercentageToDP('2%'),
-                colors.black1,
+                colors.gray,
               ),
               styles.fieldText,
             ]}>

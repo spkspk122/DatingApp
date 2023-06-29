@@ -1551,13 +1551,6 @@
   "resolved" "https://registry.npmjs.org/@react-native-community/clipboard/-/clipboard-1.5.1.tgz"
   "version" "1.5.1"
 
-"@react-native-community/datetimepicker@^6.7.1", "@react-native-community/datetimepicker@>=3.0.0":
-  "integrity" "sha512-NPW1YITG7N+3TsqXc4LZV3c5IEpTD5iX18r0bvFsHdIblo5qi0ykpeK3TffmMM5gbTjgKJ4DNVHOjLiWKxFUxw=="
-  "resolved" "https://registry.npmjs.org/@react-native-community/datetimepicker/-/datetimepicker-6.7.1.tgz"
-  "version" "6.7.1"
-  dependencies:
-    "invariant" "^2.2.4"
-
 "@react-native-community/eslint-config@^2.0.0":
   "integrity" "sha512-vHaMMfvMp9BWCQQ0lNIXibOJTcXIbYUQ8dSUsMOsrXgVkeVQJj88OwrKS00rQyqwMaC4/a6HuDiFzYUkGKOpVg=="
   "resolved" "https://registry.npmjs.org/@react-native-community/eslint-config/-/eslint-config-2.0.0.tgz"
@@ -6590,6 +6583,13 @@
     "jscodeshift" "^0.13.1"
     "nullthrows" "^1.1.1"
 
+"react-native-date-picker@^4.2.13":
+  "integrity" "sha512-cQ3k+ExXggAnytomeNGNrtV/l2a7WzVUeWKo7Gs2pv/z3TCjjlmKn0ZBMPgcThrFAgFMxgYI0XzKVKT7TPsOmw=="
+  "resolved" "https://registry.npmjs.org/react-native-date-picker/-/react-native-date-picker-4.2.13.tgz"
+  "version" "4.2.13"
+  dependencies:
+    "prop-types" "^15.8.1"
+
 "react-native-deck-swiper@^2.0.14":
   "integrity" "sha512-sVQdfwUXzdFsYFSAcHCbbIykmU+5/nkWgm44zOzivkFt1nKpGYS1anOHzrLm/v7DPlEXgoeWpRNhgUHNvzniLQ=="
   "resolved" "https://registry.npmjs.org/react-native-deck-swiper/-/react-native-deck-swiper-2.0.14.tgz"
@@ -6648,13 +6648,6 @@
   "version" "4.1.0"
   dependencies:
     "react-native-url-handler" "^0.4.2"
-
-"react-native-modal-datetime-picker@^14.0.1":
-  "integrity" "sha512-wQt4Pjxt2jiTsVhLMG0E7WrRTYBEQx2d/nUrFVCbRqJ7lrXocXaT5UZsyMpV93TnKcyut62OprbO88wYq/vh0g=="
-  "resolved" "https://registry.npmjs.org/react-native-modal-datetime-picker/-/react-native-modal-datetime-picker-14.0.1.tgz"
-  "version" "14.0.1"
-  dependencies:
-    "prop-types" "^15.7.2"
 
 "react-native-pager-view@*", "react-native-pager-view@^6.1.2", "react-native-pager-view@>= 4.0.0":
   "integrity" "sha512-qs2KSFc+7N7B+UZ6SG2sTvCkppagm5fVyRclv1KFKc7lDtrhXLzN59tXJw575LDP/dRJoXsNwqUAhZJdws6ABQ=="
@@ -6744,7 +6737,7 @@
     "prop-types" "^15.7.2"
     "yargs" "^16.1.1"
 
-"react-native@*", "react-native@>=0.35", "react-native@>=0.42.0", "react-native@>=0.49.1", "react-native@>=0.57", "react-native@>=0.57.0", "react-native@>=0.59", "react-native@>=0.59.0", "react-native@>=0.65.0", "react-native@>=0.65.1", "react-native@0.68.5":
+"react-native@*", "react-native@>= 0.64.3", "react-native@>=0.35", "react-native@>=0.42.0", "react-native@>=0.49.1", "react-native@>=0.57", "react-native@>=0.57.0", "react-native@>=0.59", "react-native@>=0.59.0", "react-native@>=0.65.1", "react-native@0.68.5":
   "integrity" "sha512-t3kiQ/gumFV+0r/NRSIGtYxanjY4da0utFqHgkMcRPJVwXFWC0Fr8YiOeRGYO1dp8EfrSsOjtfWic/inqVYlbQ=="
   "resolved" "https://registry.npmjs.org/react-native/-/react-native-0.68.5.tgz"
   "version" "0.68.5"
@@ -6837,7 +6830,7 @@
   dependencies:
     "p-sleep" "^1.1.0"
 
-"react@*", "react@^16.0.0 || ^17.0.0", "react@^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.0.0-beta.5 || ^17.0.0 || ^18.0.0", "react@^16.8", "react@^16.8 || ^17.0 || ^18.0", "react@^16.8.0 || ^17.0.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^18.2.0", "react@>=16.0", "react@>=16.8.6 || ^17.0.0 || ^18.0.0", "react@>=17.0.0", "react@17.0.2":
+"react@*", "react@^16.0.0 || ^17.0.0", "react@^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.0.0-beta.5 || ^17.0.0 || ^18.0.0", "react@^16.8", "react@^16.8 || ^17.0 || ^18.0", "react@^16.8.0 || ^17.0.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^18.2.0", "react@>= 17.0.1", "react@>=16.0", "react@>=16.8.6 || ^17.0.0 || ^18.0.0", "react@>=17.0.0", "react@17.0.2":
   "integrity" "sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA=="
   "resolved" "https://registry.npmjs.org/react/-/react-17.0.2.tgz"
   "version" "17.0.2"

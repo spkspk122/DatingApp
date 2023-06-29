@@ -14,7 +14,7 @@ export const AppStack = () => {
     <NavigationContainer
       ref={NavigationService.navigationRef}
       independent={true}>
-      <Stack.Navigator initialRouteName={SCREENS.HomeScreen}>
+      <Stack.Navigator initialRouteName={SCREENS.onBoarding}>
         <Stack.Screen
           name={SCREENS.Splash}
           component={screenNames.SplashScreen}

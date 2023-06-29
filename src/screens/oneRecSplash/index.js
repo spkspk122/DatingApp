@@ -10,6 +10,7 @@ import {iconpathurl} from '../../constant/iconpathurl';
 import {baseStyle} from '../../constant/themes';
 import {colors} from '../../utlis/constants';
 import {SCREENS} from '../../constant';
+import {strings} from '../../constant/strings';
 
 function SplashScreen(props) {
   setTimeout(() => {
@@ -34,42 +35,51 @@ function SplashScreen(props) {
               ),
               styles.datatingtxt,
             ]}>
-            DATING APP
+            {strings.datingApp}
           </Text>
 
-          <Spacer height={heightPercentageToDP('2%')} />
-          <Text
-            style={[
-              baseStyle.txtStyleOutOpenSans(
-                heightPercentageToDP('2.3%'),
-                colors.white1,
-              ),
-              styles.txt2,
-            ]}>
-            Connecting Hearts,
-          </Text>
-          <Text
-            style={[
-              baseStyle.txtStyleOutOpenSans(
-                heightPercentageToDP('2.3%'),
-                colors.white1,
-              ),
-              styles.txt2,
-            ]}>
-            {'  '}One Swipe at a Time
-          </Text>
+          <Spacer height={heightPercentageToDP('1%')} />
+          <View style={{width: '45%', alignSelf: 'center', marginLeft: '5%'}}>
+            <Text
+              style={[
+                baseStyle.txtStyleOutOpenSans(
+                  heightPercentageToDP('2%'),
+                  colors.white1,
+                ),
+                styles.txt2,
+              ]}>
+              {strings.connecting}
+            </Text>
+          </View>
 
           <Spacer height={heightPercentageToDP('30%')} />
-          <Text
-            style={[
-              baseStyle.txtStyleOutOpenSans(
-                heightPercentageToDP('2.3%'),
-                colors.white1,
-              ),
-              styles.txt2,
-            ]}>
-            M S INFO TECH
-          </Text>
+          <View
+            style={{
+              width: '65%',
+              alignSelf: 'center',
+            }}>
+            <Text
+              style={[
+                baseStyle.txtStyleOutOpenSans(
+                  heightPercentageToDP('2.3%'),
+                  colors.white1,
+                ),
+                styles.txt2,
+              ]}>
+              {strings.designedandDevelope}
+            </Text>
+            <Spacer height={heightPercentageToDP('1%')} />
+            <Text
+              style={[
+                baseStyle.txtStyleOutOpenSans(
+                  heightPercentageToDP('2.3%'),
+                  colors.white1,
+                ),
+                styles.txt2,
+              ]}>
+              {strings.developedCompany}
+            </Text>
+          </View>
         </View>
       </LinearGradient>
     </View>
