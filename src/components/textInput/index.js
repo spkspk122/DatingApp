@@ -37,7 +37,7 @@ function TextInputProfile(props) {
 
   const textInput = () => {
     return (
-      <View style={styles.textInputView}>
+      <View style={[styles.textInputView, props?.customStyle]}>
         <TextInput
           placeholder={props?.placeholder}
           placeholderTextColor={colors.grey2}
@@ -76,7 +76,6 @@ function TextInputProfile(props) {
             ]}>
             {props?.label}
           </Text>
-          <Spacer height={heightPercentageToDP('1%')} />
         </>
       )}
       {props?.type == 1 ? multilineTextInput() : textInput()}

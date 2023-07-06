@@ -1,40 +1,81 @@
-import React, {useEffect, useState} from 'react';
-import {
-  SafeAreaView,
-  Text,
-  TouchableOpacity,
-  Image,
-  ActivityIndicator,
-  View,
-  FlatList,
-} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {Image, Text, TouchableOpacity, View} from 'react-native';
 
-import styles from './styles';
 import LinearGradient from 'react-native-linear-gradient';
 import {
   heightPercentageToDP,
   widthPercentageToDP,
 } from 'react-native-responsive-screen';
+import DateTimePickerModal from 'react-native-modal-datetime-picker';
+import styles from './styles';
 // import Logo from '../../assest/svg/logoOne.svg';
 
 import {iconpathurl} from '../../constant/iconpathurl';
 import {RegisterScreen, placeholder, strings} from '../../constant/strings';
 
-import {Button, Slider} from 'react-native-elements';
-import {Animated} from 'react-native';
-import Spacer from '../../components/spacer';
-import {colors} from '../../utlis/constants';
-import {baseStyle} from '../../constant/themes';
-import TextInputProfile from '../../components/textInput';
 import {KeyboardAwareScrollView} from '@codler/react-native-keyboard-aware-scroll-view';
-import DatePicker from 'react-native-date-picker';
+import Spacer from '../../components/spacer';
+import TextInputProfile from '../../components/textInput';
+import {baseStyle} from '../../constant/themes';
+import {colors} from '../../utlis/constants';
+import CustomButton from '../../components/button';
+import DatePicker from '../../components/datePicker';
+import DropDownPicker from 'react-native-dropdown-picker';
+import NavigationServices from '../../navigation/NavigationServices';
+import {SCREENS} from '../../constant';
 
 function OneRecOnBoardarding() {
-  const [date, setDate] = useState('');
+  const [data, setData] = useState({
+    name: '',
+    dob: '',
+    email: '',
+  });
+
   const [open, setOpen] = useState(false);
+  const [show, setShow] = useState(false);
+  const [value, setValue] = useState(null);
+  const [items, setItems] = useState([
+    {label: '180cm', value: '180cm'},
+    {label: '150cm', value: '150cm'},
+  ]);
+
+  const callBack = (txt, id) => {
+    let copideData = {...data};
+
+    switch (id) {
+      case 'name':
+        copideData.name = txt;
+        return setData(copideData);
+      case 'DOB':
+        copideData.dob = txt;
+        return setData(copideData);
+      case 'email':
+        copideData.email = txt;
+        return setData(copideData);
+      default:
+        console.log('defalusted called');
+        return setData(copideData);
+    }
+  };
+
+  const validation = () => {
+    if (data.name == '') {
+      alert('Please enter your name');
+    } else if (value === null) {
+      alert('please choose height range ');
+    } else if (data.email == '') {
+      alert('Please enter your emailId');
+    } else {
+      NavigationServices.navigate(SCREENS.HomeScreen);
+    }
+  };
+  useEffect(() => {
+    console.log(data?.dob, '---------');
+  }, []);
+
   return (
     <View style={styles.mainContainer}>
-      <KeyboardAwareScrollView style={{width: '90%', alignSelf: 'center'}}>
+      <View style={{width: '90%', alignSelf: 'center'}}>
         <Spacer height={heightPercentageToDP('2.5%')} />
         <Image
           source={iconpathurl.signupBanner}
@@ -46,7 +87,6 @@ function OneRecOnBoardarding() {
             alignSelf: 'center',
           }}
         />
-
         <Text
           style={[
             baseStyle.txtStyleOutPoppinBold(
@@ -60,148 +100,140 @@ function OneRecOnBoardarding() {
         <Spacer height={heightPercentageToDP('1.5%')} />
         <TextInputProfile
           label={RegisterScreen.fullName}
-          placeholder={placeholder.enteryourname}
+          // placeholder={placeholder.enteryourname}
+          onChangeText={txt => {
+            callBack(txt, 'name');
+          }}
+          value={data?.name}
         />
         <Spacer height={heightPercentageToDP('1.5%')} />
-        <View
-          style={{
-            width: '90%',
-            alignSelf: 'center',
-          }}>
+        <TextInputProfile
+          label={RegisterScreen.email}
+          // placeholder={placeholder.enteryourname}
+          onChangeText={txt => {
+            callBack(txt, 'email');
+          }}
+          value={data?.email}
+        />
+
+        <Spacer height={heightPercentageToDP('2.5%')} />
+
+        <DatePicker
+          maxDate={new Date()}
+          dateValueCallback={date => callBack(date, 'DOB')}
+          lable={RegisterScreen.dob}
+          date={data?.dob}
+          placeholder={`Enter your ${strings.dateOfBirth}`}
+        />
+        <Spacer height={heightPercentageToDP('2%')} />
+        <View style={{width: '90%', alignSelf: 'center'}}>
           <Text
             style={[
-              baseStyle.txtStyleOutInterRegular(
-                heightPercentageToDP('2%'),
+              baseStyle.txtStyleOutPoppinBold(
+                heightPercentageToDP('1.8%'),
                 colors.gray,
               ),
             ]}>
-            {RegisterScreen.dob}
+            {RegisterScreen.Yourheight}
           </Text>
-          <Spacer height={heightPercentageToDP('2%')} />
-          <TouchableOpacity
-            onPress={() => setOpen(true)}
+          {/* <View
             style={{
               borderBottomWidth: 1,
               borderBottomColor: colors.gray,
-            }}>
-            <Text
-              style={[
-                baseStyle.txtStyleOutInterRegular(
-                  heightPercentageToDP('1.8%'),
-                  colors.gray,
-                ),
-              ]}>
-              {date ? date : placeholder.enteryourDob}
-            </Text>
-            <Spacer height={heightPercentageToDP('1%')} />
-          </TouchableOpacity>
-          <DatePicker
-            modal
-            mode="date"
-            maximumDate={new Date()}
-            fadeToColor="red"
-            open={open}
-            date={date}
-            onConfirm={date => {
-              setOpen(false);
-              setDate(date);
-            }}
-            onCancel={() => {
-              setOpen(false);
-            }}
-          />
+            }}> */}
+          {/* <TouchableOpacity
+              style={{alignSelf: 'flex-end'}}
+              onPress={() => setShow(!show)}>
+              <Image
+                source={iconpathurl.downArrow}
+                style={{
+                  resizeMode: 'contain',
+                  width: widthPercentageToDP('5%'),
+                  height: heightPercentageToDP('5%'),
+                }}
+              />
+            </TouchableOpacity> */}
+          {show || (
+            <View>
+              <DropDownPicker
+                open={open}
+                value={value}
+                items={items}
+                setOpen={setOpen}
+                setValue={setValue}
+                setItems={setItems}
+                style={{
+                  borderBottomWidth: 1,
+                  borderBottomColor: colors.gray,
+                  borderLeftWidth: 0,
+                  borderRightWidth: 0,
+                  borderTopWidth: 0,
+                  // backgroundColor: 'red',
+                  padding: 0,
+                }}
+                containerStyle={{zIndex: 3}}
+                showArrowIcon={true}
+                arrowIconStyle={{padding: '5%', backgroundColor: '#F12E90'}}
+                placeholder={false}
+              />
+            </View>
+          )}
+          {/* </View> */}
+
+          <Spacer height={heightPercentageToDP('1.5%')} />
         </View>
-
-        {/* <Button title="Open" onPress={() => setOpen(true)} />
-        <DatePicker
-          modal
-          open={open}
-          date={date}
-          onConfirm={date => {
-            setOpen(false);
-            setDate(date);
-          }}
-          onCancel={() => {
-            setOpen(false);
-          }}
-        /> */}
-
         <Spacer height={heightPercentageToDP('1.5%')} />
-        <TextInputProfile
-          label="EmailAddress"
-          placeholder={'enter your Gender'}
-        />
-        <Spacer height={heightPercentageToDP('1.5%')} />
-        <TextInputProfile
-          label="Password"
-          placeholder={'enter your Gender'}
-          secureTextEntry={true}
-        />
-        <Spacer height={heightPercentageToDP('1%')} />
-        <TouchableOpacity>
+        <View style={{width: '90%', alignSelf: 'center'}}>
           <Text
             style={[
               baseStyle.txtStyleOutPoppinBold(
                 heightPercentageToDP('1.8%'),
-                colors.black,
+                colors.gray,
               ),
-              [{fontWeight: '700', textAlign: 'right', marginRight: '5%'}],
             ]}>
-            Forget Password ?
+            {RegisterScreen.Yourstatus}
           </Text>
-        </TouchableOpacity>
 
-        <Spacer height={heightPercentageToDP('3%')} />
-        <TouchableOpacity>
-          <LinearGradient
-            start={{x: 0, y: 0}}
-            end={{x: 0, y: 1}}
-            colors={['#603F8B', '#F12E90']}
+          <Spacer height={heightPercentageToDP('1.5%')} />
+          <View
             style={{
-              padding: '3.5%',
-              width: '35%',
-              alignSelf: 'center',
-              borderRadius: heightPercentageToDP('25%'),
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              width: '95%',
             }}>
-            <Text
-              style={[
-                baseStyle.txtStyleOutPoppinBold(
-                  heightPercentageToDP('2%'),
-                  colors.white1,
-                ),
-                {textAlign: 'center', fontWeight: 'bold'},
-              ]}>
-              Sign up
-            </Text>
-          </LinearGradient>
-        </TouchableOpacity>
+            <CustomButton
+              lable={RegisterScreen.single}
+              CustomStyle={{
+                borderRadius: heightPercentageToDP('1.5%'),
+                width: '90%',
+                padding: '7.5%',
+              }}
+            />
+
+            <CustomButton
+              lable={RegisterScreen.devorice}
+              CustomStyle={{
+                borderRadius: heightPercentageToDP('1.5%'),
+                width: '90%',
+                padding: '7.5%',
+              }}
+            />
+          </View>
+        </View>
+        <Spacer height={heightPercentageToDP('1%')} />
 
         <Spacer height={heightPercentageToDP('3%')} />
-        <View style={{flexDirection: 'row', alignSelf: 'center'}}>
-          <Text
-            style={[
-              baseStyle.txtStyleOutPoppinBold(
-                heightPercentageToDP('1.8%'),
-                colors.gray4,
-              ),
-              [{fontWeight: '700'}],
-            ]}>
-            Already having account ?{' '}
-          </Text>
-          <TouchableOpacity>
-            <Text
-              style={[
-                baseStyle.txtStyleOutPoppinBold(
-                  heightPercentageToDP('2%'),
-                  colors.black,
-                ),
-                [{fontWeight: '900'}],
-              ]}>
-              Sign in ?
-            </Text>
-          </TouchableOpacity>
-        </View>
-      </KeyboardAwareScrollView>
+
+        <CustomButton
+          lable={RegisterScreen.continue}
+          onPress={validation}
+          CustomStyle={{
+            borderRadius: heightPercentageToDP('1.5%'),
+            padding: '3.5%',
+          }}
+        />
+        <Spacer height={heightPercentageToDP('3%')} />
+      </View>
     </View>
   );
 }

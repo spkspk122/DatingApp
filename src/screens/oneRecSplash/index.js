@@ -14,7 +14,7 @@ import {strings} from '../../constant/strings';
 
 function SplashScreen(props) {
   setTimeout(() => {
-    props.navigation.navigate(SCREENS.onBoarding);
+    props.navigation.navigate(SCREENS.login);
   }, 3000);
 
   return (

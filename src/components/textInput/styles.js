@@ -8,16 +8,19 @@ import {colors} from '../../utlis/constants';
 
 const styles = StyleSheet.create({
   textInputView: {
+    // width: '90%',
+    // backgroundColor: colors.white,
+    // height: heightPercentageToDP('5%'),
+    // borderRadius: widthPercentageToDP('2%'),
+    // alignSelf: 'center',
+    // paddingRight: widthPercentageToDP('2%'),
+    // paddingLeft: widthPercentageToDP('2%'),
+    // justifyContent: 'center',
+    // borderColor: colors.grey2,
+    // borderBottomWidth: heightPercentageToDP('0.2%'),
+
     width: '90%',
-    backgroundColor: colors.white,
-    height: heightPercentageToDP('5%'),
-    borderRadius: widthPercentageToDP('2%'),
     alignSelf: 'center',
-    paddingRight: widthPercentageToDP('2%'),
-    paddingLeft: widthPercentageToDP('2%'),
-    justifyContent: 'center',
-    borderColor: colors.grey2,
-    borderBottomWidth: heightPercentageToDP('0.2%'),
   },
   textInputViewMultiline: {
     width: '90%',
@@ -29,7 +32,14 @@ const styles = StyleSheet.create({
     borderWidth: heightPercentageToDP('0.2%'),
     borderRadius: widthPercentageToDP('2%'),
   },
-  textInput: {},
+  textInput: {
+    borderBottomWidth: 1,
+    borderBottomColor: colors.gray,
+    color: colors.black,
+
+    padding: 1,
+    marginTop: '2%',
+  },
   fieldText: {
     width: '90%',
     alignSelf: 'center',
